@@ -25,7 +25,15 @@ variable filename1 {
 # Here we change the content type to be a tuple with a default value.
 # You will not be able to assign all elements of a tuple in the main.tf, you can use the index number to assign a given value.
 # The type will be automatically chosed.
+# variable content1 {
+#     type = tuple([ string, bool, number ])
+#     default = [ "red", true, 23 ]
+# }
+
 variable content1 {
-    type = tuple([ string, bool, number ])
-    default = [ "red", true, 23 ]
+    type = map
+    default = {
+        name = "Ankit",
+        age = 32
+    }
 }
