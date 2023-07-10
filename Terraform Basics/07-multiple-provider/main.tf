@@ -7,4 +7,4 @@ resource random_string rstring {
     length = 10
 }
 
-# Here we call the local_file and random_string are called Providers in terraform. 
+# Here we call the local_file and random_string as Providers in terraform. 
