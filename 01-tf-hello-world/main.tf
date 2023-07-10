@@ -112,3 +112,5 @@ resource local_file sample_res {
 
 # local_file.sample_res: Creating...
 # local_file.sample_res: Creation complete after 0s [id=f0702396afaf73d3f0a3d14376a3196589381e01]
+
+# You can read more on the same at [https://developer.hashicorp.com/terraform/intro]
