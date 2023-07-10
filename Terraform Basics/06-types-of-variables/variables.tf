@@ -30,6 +30,7 @@ variable filename1 {
 #     default = [ "red", true, 23 ]
 # }
 
+# Here we change the content type to be a dictionary with a default multiple key:value pairs.
 variable content1 {
     type = map
     default = {
