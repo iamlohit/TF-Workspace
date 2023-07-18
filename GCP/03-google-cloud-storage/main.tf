@@ -6,6 +6,11 @@ resource "google_storage_bucket" "GCS1" {
   name = "tf-bucket-${random_id.rid.dec}"
   location = "US"
   storage_class = "NEARLINE"
+
+  labels = {
+    "env" = "dev"
+    "retailer" = "Krogers"
+  }
 }
 
 resource "google_storage_bucket_object" "picture" {
@@ -13,3 +18,4 @@ resource "google_storage_bucket_object" "picture" {
   bucket = google_storage_bucket.GCS1.name
   source = "architecture-building-city-glass-wallpaper-preview.jpg"
 }
+
