@@ -25,3 +25,11 @@ resource "google_compute_instance" "vm-from-tf" {
       automatic_restart = false
     }
 }
+
+# Adding persistant disk, so it remains even if VM is deleted.
+# But this does not attach the disk to the VM automatically.
+resource "google_compute_disk" "tf-pd-ssd-1" {
+    name = "tf-pd-ssd-1"
+    type = "pd-ssd"
+    zone = "us-central1-a"
+}
