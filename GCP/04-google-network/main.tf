@@ -13,6 +13,7 @@ resource "google_compute_subnetwork" "usc1-subnet" {
     network = google_compute_network.custom-vpc-tf.id
     ip_cidr_range = "10.1.0.0/24"
     region = "us-central1"
+    private_ip_google_access = true
 }
 
 output "auto-vpc" {
