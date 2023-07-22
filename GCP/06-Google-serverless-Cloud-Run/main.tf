@@ -14,6 +14,16 @@ resource "google_cloud_run_v2_service" "run-app-from-tf" {
   }
 }
 
-resource "google_cloud_run_v2_job_iam_binding" "name" {
-  members = "allUsers"
+data "google_iam_policy" "admin" {
+  binding {
+    role = "roles/run.invoker"
+    members = ["allUsers"]
+  }
+}
+
+resource "google_cloud_run_v2_service_iam_policy" "policy" {
+  project = google_cloud_run_v2_service.run-app-from-tf.project
+  location = google_cloud_run_v2_service.run-app-from-tf.location
+  name = google_cloud_run_v2_service.run-app-from-tf.name
+  policy_data = data.google_iam_policy.admin.policy_data
 }
