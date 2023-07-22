@@ -13,6 +13,18 @@ resource "google_cloud_run_v2_service" "run-app-from-tf" {
       image = "gcr.io/google-samples/hello-app:2.0"
     }
   }
+
+  traffic {
+    type = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
+    percent = 50
+    revision = "run-app-from-tf-00001-c4v"
+  }
+
+  traffic {
+    type = "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION"
+    percent = 50
+    revision = "run-app-from-tf-00002-mdz"
+  }
 }
 
 data "google_iam_policy" "admin" {
