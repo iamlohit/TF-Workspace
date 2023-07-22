@@ -9,7 +9,8 @@ resource "google_cloud_run_v2_service" "run-app-from-tf" {
     }
     containers {
       name = "hello-world"
-      image = "gcr.io/google-samples/hello-app:1.0"
+      # image = "gcr.io/google-samples/hello-app:1.0"
+      image = "gcr.io/google-samples/hello-app:2.0"
     }
   }
 }
