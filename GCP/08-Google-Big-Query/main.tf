@@ -7,6 +7,7 @@ resource "google_bigquery_dataset" "bq_ds" {
 resource "google_bigquery_table" "table_tf" {
   dataset_id = google_bigquery_dataset.bq_ds.dataset_id
   table_id = "table_from_tf"
+  deletion_protection = false # Need to set this as it's enabled by default and wont allow you to delete this resource with terraform destroy.
 }
 
 # These are just bare minimum parameters.
