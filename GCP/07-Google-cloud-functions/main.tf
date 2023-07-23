@@ -51,3 +51,10 @@ resource "google_cloudfunctions2_function_iam_policy" "policy" {
   cloud_function = google_cloudfunctions2_function.function.name
   policy_data = data.google_iam_policy.admin.policy_data
 }
+
+# Note: Need to run the following commands to enable Unauth Access to this function by all users under cloud run.
+# Not yet supported by current 4.74.0 Terraform Provider via Google Cloud Functions
+
+        # gcloud functions add-invoker-policy-binding function-v2-tf-2 \
+        #         --region="us-central1" \
+        #         --member="allUsers"
