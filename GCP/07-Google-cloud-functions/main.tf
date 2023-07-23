@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "bucket" {
-  name = "${google.project}-gcf-source-tf"
+  name = "lj-gcf-source-tf-2"
   location = "US"
   uniform_bucket_level_access = true
 }
@@ -7,17 +7,18 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket_object" "object" {
   name = "index.zip"
   bucket = google_storage_bucket.bucket.name
-  source = "index.js"
+  source = "index.zip"
 }
 
 resource "google_cloudfunctions2_function" "function" {
-  name = "function-v2-tf"
+  name = "function-v2-tf-2"
   location = "us-central1"
   description = "A new V2 GCF using TF"
 
   build_config {
-    runtime = "nodejs16"
+    runtime = "nodejs14"
     entry_point = "helloWorldtf"
+    
     source {
       storage_source {
         bucket = google_storage_bucket.bucket.name
@@ -26,7 +27,7 @@ resource "google_cloudfunctions2_function" "function" {
     }
   }
   service_config {
-    max_instance_count = 5
+    max_instance_count = 1
     available_memory = "256M"
     timeout_seconds = 300
   }
@@ -45,8 +46,8 @@ data "google_iam_policy" "admin" {
   }
 }
 
-data "google_cloudfunctions2_function_iam_policy" "policy" {
-  project = google.project
+resource "google_cloudfunctions2_function_iam_policy" "policy" {
   location = google_cloudfunctions2_function.function.location
   cloud_function = google_cloudfunctions2_function.function.name
+  policy_data = data.google_iam_policy.admin.policy_data
 }
