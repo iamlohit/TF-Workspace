@@ -15,7 +15,7 @@ Welcome to the TF_workspace repository. This repository contains Terraform confi
 - 07-multiple-provider: Shows how to handle multiple providers in a Terraform configuration.
 - 08-dependency: Illustrates implicit and explicit dependencies in Terraform.
 - 09-output-block: Usage of output blocks in Terraform.
-- 0-lifecycle-rules: Shows how to use lifecycle blocks in Terraform.
+- 10-lifecycle-rules: Shows how to use lifecycle blocks in Terraform.
 - 11-provider-versions: Describes how to specify provider versions in Terraform.
 - 12-data-source: Showcases the use of data sources in Terraform.
 
