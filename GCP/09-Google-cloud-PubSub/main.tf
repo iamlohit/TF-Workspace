@@ -10,3 +10,25 @@
 #     Schemas: The messages can be formatted to a specific schema that needs to be adhered by the publisher like json or Proto Buff(data converted to binary).
 #       Without this, we can have free form messages as well, but that is rarely useful.
 
+resource "google_pubsub_schema" "example" {
+  name = "example"
+  type = "AVRO"
+  definition = "{\n  \"type\" : \"record\",\n  \"name\" : \"UserInfo\",\n  \"fields\" : [\n    {\n      \"name\" : \"name\",\n      \"type\" : [\"string\", \"int\"]\n    }\n  ]\n}\n"
+}
+
+resource "google_pubsub_topic" "topic_tf" {
+  name = "topic_tf"
+  depends_on = [ google_pubsub_schema.example ]
+}
+
+resource "google_pubsub_subscription" "sub_tf" {
+  name = "sub_tf"
+  topic = google_pubsub_topic.topic_tf.name
+  # default method is pull
+}
+
+# Message :
+#     {
+#         "name" : "lohit",
+#         "age" : 32
+#     }
