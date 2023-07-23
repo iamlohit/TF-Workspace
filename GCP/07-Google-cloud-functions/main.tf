@@ -36,3 +36,17 @@ output "function_uri" {
   value = google_cloudfunctions2_function.function.service_config[0].uri
 }
 
+data "google_iam_policy" "admin" {
+  binding {
+    role = "roles/cloudfunctions.invoker"
+    members = [
+      "allUsers",
+    ]
+  }
+}
+
+data "google_cloudfunctions2_function_iam_policy" "policy" {
+  project = google.project
+  location = google_cloudfunctions2_function.function.location
+  cloud_function = google_cloudfunctions2_function.function.name
+}
